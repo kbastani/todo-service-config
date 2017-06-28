@@ -7,6 +7,10 @@ spring:
   data:
     mongodb:
       uri: ${vcap.services.todo-mongo.credentials.uri}
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
 amazon:
   aws:
     access-key-id: ${AMAZON_AWS_ACCESS_KEY_ID:replace}
