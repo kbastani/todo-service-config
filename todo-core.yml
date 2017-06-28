@@ -1,0 +1,13 @@
+---
+spring:
+  profiles: cloud
+  datasource:
+    platform: org.hibernate.dialect.MariaDBDialect
+    initialize: true
+  data:
+    mongodb:
+      uri: ${vcap.services.todo-mongo.credentials.uri}
+amazon:
+  aws:
+    access-key-id: ${AMAZON_AWS_ACCESS_KEY_ID:replace}
+    access-key-secret: ${AMAZON_AWS_ACCESS_KEY_SECRET:replace}
