@@ -2,14 +2,18 @@
 spring:
   profiles: cloud
   datasource:
-    platform: org.hibernate.dialect.MariaDBDialect
+    driver-class-name: org.mariadb.jdbc.Driver
+    platform: org.hibernate.dialect.MySQL5InnoDBDialect
     initialize: true
   data:
     mongodb:
       uri: ${vcap.services.todo-mongo.credentials.uri}
   jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 amazon:
   aws:
     access-key-id: ${AMAZON_AWS_ACCESS_KEY_ID:replace}
