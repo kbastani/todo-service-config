@@ -14,6 +14,26 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
+  cloud:
+    stream:
+      bindings:
+        metricsChannel:
+          destination: metrics
+        metrics:
+          destination: metrics
+          group: metrics-group
+          consumer:
+            durableSubscription: true
+        input:
+          destination: todo
+          group: todo-group
+          contentType: 'application/json'
+          consumer:
+            durableSubscription: true
+            concurrency: 10
+        output:
+          destination: todo
+          contentType: 'application/json'
 amazon:
   aws:
     access-key-id: ${AMAZON_AWS_ACCESS_KEY_ID:replace}
