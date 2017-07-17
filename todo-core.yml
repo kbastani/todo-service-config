@@ -15,13 +15,17 @@ spring:
     hibernate:
       ddl-auto: create
   cloud:
+    function:
+      adapter: aws_lambda
     stream:
       bindings:
         metricsChannel:
           destination: metrics
+          contentType: 'application/json'
         metrics:
           destination: metrics
           group: metrics-group
+          contentType: 'application/json'
           consumer:
             durableSubscription: true
         input:
@@ -38,5 +42,3 @@ amazon:
   aws:
     access-key-id: ${AMAZON_AWS_ACCESS_KEY_ID:replace}
     access-key-secret: ${AMAZON_AWS_ACCESS_KEY_SECRET:replace}
-    functions:
-      enabled: true
