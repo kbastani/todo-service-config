@@ -21,11 +21,9 @@ spring:
       bindings:
         metricsChannel:
           destination: metrics
-          contentType: 'application/json'
         metrics:
           destination: metrics
           group: metrics-group
-          contentType: 'application/json'
           consumer:
             durableSubscription: true
         input:
